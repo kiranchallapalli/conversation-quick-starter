@@ -106,7 +106,7 @@ If you want to experiment with the application or use it as a basis for building
 
 1. Click **Import** to add the Conversation Quick Starter workspace. When prompted, specify the location of the workspace JSON file in your local copy of the application project:
 
-   `<project_root>/conversation-quick-starter/training/conversation-quick-starter-workspace.json`
+   `<project_root>/conversation-quick-starter/training/wcs-starter-workspace.json`
 
 1. Select **Everything (Intents, Entities, and Dialog)** and then click **Import**. The Conversation Quick Starter workspace is created.
    * If you have any problems uploading the workspace using Chrome, please try another browser such as Firefox or Safari.
