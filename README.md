@@ -252,41 +252,25 @@ After you have the application deployed and running, you can explore the source 
 
 # What does the Conversation Quick Starter application do?
 
-The application interface is designed for chatting with a coaching bot. Based on the time of day, it asks you if you've had a particular meal (breakfast, lunch, or dinner) and what you ate for that meal.
+The application interface is a template designed for helping you with a quick start to creating a new Conversation application that is integrated with Tone Analyzer. It currently answers very basic questions like greetings, contact details and exiting a chat session.
 
 The chat interface is in the left panel of the UI, and the JSON response object returned by the Conversation service in the right panel. Your input is run against a small set of sample data trained with the following intents:
 
-    yes: acknowledgment that the specified meal was eaten
-    no: the specified meal was not eaten
-    help
-    exit
+    contact-us: providing address/email/phone of your organization
+    ending: providing a response when someone intends to exit a chat
+    about-us: providing an overview of your organization
 
 The dialog is also trained on two types of entities:
 
-    food items
-    unhealthy food items
+    response: yes and no
+    contact-type: address, email and phone
 
-These intents and entities help the bot understand variations your input.
-
-After asking you what you ate (if a meal was consumed), the bot asks you how you feel about it. Depending on your emotional tone, the bot provides different feedback.
-
-Below you can find some sample interactions:
-
-![Alt text](readme_images/examples.jpeg?raw=true)
+These intents and entities help the bot understand variations in your input.
 
 In order to integrate the Tone Analyzer with the Conversation service, the following approach was taken:
    * Intercept the user's message. Before sending it to the Conversation service, invoke the Tone Analyzer Service. See the call to `toneDetection.invokeToneAsync` in the `invokeToneConversation` function in [app.js](./app.js).
    * Parse the JSON response object from the Tone Analyzer Service, and add appropriate variables to the context object of the JSON payload to be sent to the Conversation service. See the `updateUserTone` function in [tone_detection.js](./addons/tone_detection.js).
    * Send the user input, along with the updated context object in the payload to the Conversation service. See the call to `conversation.message` in the `invokeToneConversation` function in [app.js](./app.js).
-
-
-You can see the JSON response object from the Conversation service in the right hand panel.
-
-![Alt text](readme_images/tone_context.jpeg?raw=true)
-
-In the conversation template, alternative bot responses were encoded based on the user's emotional tone. For example:
-
-![Alt text](readme_images/rule.png?raw=true)
 
 
 
